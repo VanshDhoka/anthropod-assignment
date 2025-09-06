@@ -8,7 +8,7 @@ with open("sentiment_schema.json", "r") as f:
     schema = json.load(f)
 
 model=ChatGoogleGenerativeAI(
-    model='gemini-2.5-flash-lite',
+    model='gemini-2.5-flash',
     temperature=0.2
 )
 

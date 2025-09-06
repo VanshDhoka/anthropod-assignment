@@ -1,6 +1,7 @@
 import streamlit as st
 import os
-from sentiment_llm import analyze_review  
+from sentiment_llm import analyze_review
+import json 
 
 st.set_page_config(
     page_title="Movie Review Sentiment Marker",
@@ -11,19 +12,36 @@ st.set_page_config(
 st.title("🎬 Movie Review Sentiment Marker")
 st.markdown("Paste a movie review below and click **Analyze** to see its sentiment.")
 
-# Input box
+# Cost Control(using caching to json file)
+Cache_File = ".review_cache.json"
+if os.path.exists(Cache_File):
+    with open(Cache_File, "r") as f:
+        review_cache = json.load(f)
+else:
+    review_cache = {}
+
+def analyze_review_cached(review):
+    if review in review_cache:
+        return review_cache[review]
+
+    result = analyze_review(review)
+
+    if isinstance(result, list) and "args" in result[0]:
+        result = result[0]["args"]
+
+    review_cache[review] = result
+    with open(Cache_File, "w") as f:
+        json.dump(review_cache, f, indent=2)
+
+    return result
+
 review_text = st.text_area("Enter a movie review:", height=200)
 
 if st.button("Analyze"):
     if review_text.strip():
         try:
-            result = analyze_review(review_text)
-
-            if isinstance(result, list) and "args" in result[0]:
-                result = result[0]["args"]
-
+            result = analyze_review_cached(review_text)
             st.subheader("Result")
-
             st.markdown(f"**Label:** {result['label']}")
             st.markdown(f"**Confidence:** {result['confidence']:.2f}")
             st.markdown(f"**Explanation:** {result['explanation']}")

@@ -1,7 +1,7 @@
 # Python cache
 __pycache__/
 *.py[cod]
-
+.review_cache.json
 # Virtual environment
 venv/
 
