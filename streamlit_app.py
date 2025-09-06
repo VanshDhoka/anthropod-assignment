@@ -3,7 +3,7 @@ import os
 from sentiment_llm import analyze_review
 import json 
 
-GEMINI_API_KEY = st.secrets.get("GEMINI_API_KEY")
+GEMINI_API_KEY = st.secrets.get("GEMINI_API_KEY") #Remove this line if running locally and add your gemini key in the .env file
 
 st.set_page_config(
     page_title="Movie Review Sentiment Marker",
