@@ -16,7 +16,7 @@ Follow these steps to run the application on your local machine.
 ### 1. Clone the Repository
 
 ```bash
-git clone [https://github.com/VanshDhoka/anthropod-assignment.git](https://github.com/VanshDhoka/anthropod-assignment.git)
+git clone https://github.com/VanshDhoka/anthropod-assignment.git
 cd anthropod-assignment
 ````
 
