@@ -1,0 +1,32 @@
+{
+    "title": "Sentiment_Marker",
+    "description": "Classify a movie review as Positive, Negative, or Neutral and provide reasoning with supporting evidence.",
+    "type": "object",
+    "properties": {
+        "label": {
+            "type": "string",
+            "enum": ["Positive","Negative","Neutral"],
+            "description": "Choose the overall sentiment of the review: Positive, Negative, or Neutral."
+        },
+
+        "confidence": {
+            "type": "number",
+            "multipleof": 0.01,
+            "description": "Provide a confidence score for the classification, as a number between 0 and 1 with two decimal places (e.g., 0.87)."
+        },
+
+        "explanation": {
+            "type": "string",
+            "description": "Give a concise explanation (1-3 sentences) describing why the review was labeled with the chosen sentiment."
+        },
+
+        "evident_phrases": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            },
+            "description": "List the specific phrases from the review that clearly indicate the sentiment."
+        }
+    },
+    "required":["label","confidence","explanation","evident_phrases"]
+}

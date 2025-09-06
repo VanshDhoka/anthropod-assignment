@@ -1,0 +1,15 @@
+# LangChain Core
+langchain
+langchain-core
+# Google Gemini (PaLM) Integration
+langchain-google-genai
+google-generativeai
+# Environment Variable Management
+python-dotenv
+# Machine Learning Utilities
+numpy
+pandas
+#Structured Output
+Pydantic
+# Deployment
+streamlit
